@@ -15,10 +15,11 @@ Group:BlackPearl[@bp.team]
 Site:blackpreal.team
 ==================================================
 BlackDir.py --url : url to find Directory
-Usage:
+ex:
 BlackDir.py --url http://google.com                                                                                                     
 """)
 def Dir(url,list):
+
     for i in list:
         Purl = url+"/"+i
         try:
@@ -35,4 +36,5 @@ lists = open("list.txt","r")
 if args.url == None:
 	logo()
 else:
+	print("\x1b[32mPlease wait we find Directory .. ")
 	Dir(url,lists)
