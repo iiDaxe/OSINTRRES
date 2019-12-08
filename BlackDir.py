@@ -12,7 +12,7 @@ def logo():
 ==================================================
 C0ded By RedVirus[@redvirus0]
 Group:BlackPearl[@bp.team]
-Site:blackpreal.team
+Site:blackpearl.team
 ==================================================
 BlackDir.py --url : url to find Directory
 ex:
