@@ -1,4 +1,4 @@
-from urllib import request
+import requests
 import argparse
 def logo():
 	print("""
@@ -12,21 +12,21 @@ def logo():
 ==================================================
 C0ded By RedVirus[@redvirus0]
 Group:BlackPearl[@bp.team]
-Site:blackpearl.team
+Site:blackpreal.team
 ==================================================
 BlackDir.py --url : url to find Directory
 ex:
 BlackDir.py --url http://google.com                                                                                                     
 """)
 def Dir(url,list):
-
     for i in list:
+        i = i.strip()
         Purl = url+"/"+i
-        try:
-            open = request.urlopen(Purl)
+        response = requests.get(Purl,data=None)
+        if response.status_code == 200:
             print("\x1b[32mFound[+]")
             print(Purl)
-        except:
+        else:
             pass
 parser = argparse.ArgumentParser("Find Directory")
 parser.add_argument("-url","--url")
