@@ -1,5 +1,6 @@
 import requests
 import argparse
+import threading
 def logo():
 	print("""
 \x1b[32m
@@ -7,7 +8,7 @@ def logo():
 | __ )| | __ _  ___| | _|  _ \(_)_ __ 
 |  _ \| |/ _` |/ __| |/ / | | | | '__|
 | |_) | | (_| | (__|   <| |_| | | |   
-|____/|_|\__,_|\___|_|\_\____/|_|_| version:0.1  
+|____/|_|\__,_|\___|_|\_\____/|_|_| version:0.2  
 
 ==================================================
 C0ded By RedVirus[@redvirus0]
@@ -15,8 +16,9 @@ Group:BlackPearl[@bp.team]
 Site:blackpearl.team
 ==================================================
 BlackDir.py --url : url to find Directory
+BlackDir.py --list : if you have list
 ex:
-BlackDir.py --url http://google.com                                                                                                     
+BlackDir.py --list /root/Desktop/list.txt --url http://google.com                                                                                                     
 """)
 def Dir(url,list):
     for i in list:
@@ -30,11 +32,17 @@ def Dir(url,list):
             pass
 parser = argparse.ArgumentParser("Find Directory")
 parser.add_argument("-url","--url")
+parser.add_argument("-list","--list")
 args = parser.parse_args()
+listuser = args.list
+if listuser != None:
+    lists = open(listuser,"r")
+else:
+    lists = open("list.txt","r")
 url = args.url
-lists = open("list.txt","r")
+thred = threading.Thread(target=Dir,args=(url,lists))
 if args.url == None:
 	logo()
 else:
 	print("\x1b[32mPlease wait we find Directory .. ")
-	Dir(url,lists)
+	thred.start()
